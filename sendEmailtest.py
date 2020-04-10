@@ -52,7 +52,7 @@ class SendEmail(object):
 
             for i in range(len(self.receiver)):
                 msg.attach(MIMEText(self.content.
-                                    format(user=self.receiver_name[self.receiver.index(self.receiver[i])]),
+                                    format(user_test=self.receiver_name[self.receiver.index(self.receiver[i])]),
                                     'html', 'utf-8'))
 
             # msg.attach(MIMEText(self.content.format(user=self.receiver_name), 'html', 'utf-8'))
@@ -66,7 +66,7 @@ class SendEmail(object):
         else:
             for i in range(len(self.receiver)):
                 msg = MIMEText(self.content
-                               .format(user=self.receiver_name[self.receiver.index(self.receiver[i])]),
+                               .format(user_test=self.receiver_name[self.receiver.index(self.receiver[i])]),
                                'html', 'utf-8')
                 msg['from'] = Header(self.mail_name, 'UTF-8')
                 msg['to'] = ";".join(self.receiver)              # Header(self.receiver, 'utf-8')
@@ -79,7 +79,7 @@ class SendEmail(object):
             try:
                 smtp = smtplib.SMTP()
                 smtp.connect(self.mail_host)
-                smtp.login(user=self.mail_name, password=self.mail_pass,)
+                smtp.login(self.mail_name, password=self.mail_pass,)
             except:
                 smtp = smtplib.SMTP_SSL()
                 smtp.login(user=self.mail_name, password=self.mail_pass)
@@ -103,7 +103,7 @@ if __name__ == '__main__':
         receiver_name=['乐春霞', '楽春霞'],
         subject='这是测试邮件的标题',
         content="""
-                <p>Dear {user}:</p>
+                <p>Dear {user_test}:</p>
                 <p style="text-indent:2em"> 这是测试邮件里面的内容,详情请点击链接或者下载附件。</p>
                 <div> <a href = "https://www.baidu.com"><span font-size="20px">请点击这里</span></a></div>
                 <p> 图片的演示：</p>
