@@ -70,7 +70,7 @@ class sendEMail(object):
         try:
             self.smtp_s.sendmail(user, receiver, msg.as_string())
             self.smtp_s.quit()
-            print('邮件发送成功')
+            print('邮件发送成功！')
             return True
         except smtplib.SMTPException as e:
             print('邮件发送失败！')
